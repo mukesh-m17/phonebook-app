@@ -78,7 +78,7 @@ input {
   border-radius: 16px;
   background: rgba(255,255,255,0.85);
   backdrop-filter: blur(15px);
-  width: 325px;
+  width: 350px;
   max-width: 100%;
   box-shadow: inset 3px 3px 8px rgba(0,0,0,0.12),
               inset -3px -3px 8px rgba(255,255,255,0.7);
@@ -125,6 +125,7 @@ button {
   background: linear-gradient(135deg, #74b9ff, #0984e3);
   color: #fff;
   display: flex;
+  flex-direction: row;
   justify-content: center;
   align-items: center;
   gap: 10px;

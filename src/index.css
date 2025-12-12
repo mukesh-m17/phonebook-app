@@ -1,0 +1,233 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  background: linear-gradient(145deg, #a8d0ff, #74b9ff, #4a90e2);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 30px;
+  font-weight: bold;
+}
+
+/* -------------------------------------------------- */
+/* Main Glass Card */
+.app-container {
+  width: 430px;
+  padding: 26px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+
+  border-radius: 28px;
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(20px);
+
+  box-shadow: 
+      0 25px 45px rgba(0, 0, 0, 0.25),
+      inset 0 0 40px rgba(255, 255, 255, 0.2);
+
+  animation: fadeIn 0.6s ease-out;
+  margin: 0 auto;
+}
+
+/* Fade In Animation */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(40px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* -------------------------------------------------- */
+/* TITLE */
+h1 {
+  text-align: center;
+  font-size: 34px;
+  color: #0a3d62;
+  font-weight: 700;
+  margin-bottom: 20px;
+  text-shadow: 0 0 12px rgba(255,255,255,0.35);
+}
+
+/* -------------------------------------------------- */
+/* FORM */
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+label {
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  color: #0a3d62;
+}
+
+input {
+  padding: 14px;
+  font-size: 15px;
+  border: none;
+  border-radius: 16px;
+  background: rgba(255,255,255,0.85);
+  backdrop-filter: blur(15px);
+  width: 325px;
+  max-width: 100%;
+  box-shadow: inset 3px 3px 8px rgba(0,0,0,0.12),
+              inset -3px -3px 8px rgba(255,255,255,0.7);
+  transition: 0.25s;
+}
+
+input:focus {
+  outline: none;
+  transform: scale(1.03);
+  box-shadow: 0 0 12px rgba(0,123,255,0.35);
+}
+
+.header-controls{
+  width: 90%;
+  padding: 14px;
+  border-radius: 15px;
+  border: none;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  margin-bottom: 12px;
+  background: rgba(255,255,255,0.8);
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  outline: none;
+}
+
+.count{
+  color: #0a3d62;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+}
+
+/* -------------------------------------------------- */
+/* BUTTONS */
+button {
+  border: none;
+  padding: 14px 20px;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 16px;
+  cursor: pointer;
+  width: 100%;
+  background: linear-gradient(135deg, #74b9ff, #0984e3);
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  box-shadow: 0 8px 20px rgba(0, 123, 255, 0.3);
+  transition: 0.3s;
+}
+
+button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 28px rgba(0,123,255,0.45);
+}
+
+/* -------------------------------------------------- */
+/* CONTACT LIST */
+.contact-item {
+  margin-top: 20px;
+  padding: 18px;
+  border-radius: 20px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  background: rgba(255,255,255,0.9);
+  backdrop-filter: blur(12px);
+
+  box-shadow: 5px 5px 20px rgba(0,0,0,0.15),
+              -5px -5px 20px rgba(255,255,255,0.6);
+
+  transition: 0.25s;
+}
+
+.contact-item:hover {
+  transform: scale(1.03);
+}
+
+.contact-info h3 {
+  font-size: 18px;
+  color: #0a3d62;
+}
+
+.contact-info p {
+  font-size: 14px;
+  color: #3c6382;
+}
+
+/* -------------------------------------------------- */
+/* -------------------------------------------------- */
+/* ACTION BUTTONS */
+.action-buttons {
+  display: flex;
+  gap: 18px;  /* increased gap between buttons */
+}
+
+.action-buttons button {
+  width: auto;
+  padding: 10px 16px;  /* slightly larger padding for better touch area */
+  font-size: 13px;
+  border-radius: 12px;
+  box-shadow: none;
+}
+
+
+/* Call Button (Green) */
+.call-btn {
+  background: #2ecc71;
+}
+
+/* Edit Button (Blue) */
+.edit-btn {
+  background: #0984e3;
+}
+
+/* Delete Button (Red) */
+.delete-btn {
+  background: #d63031;
+}
+
+/* -------------------------------------------------- */
+/* RESPONSIVE */
+@media (max-width: 480px) {
+  .app-container {
+    width: 95%;
+    border-radius: 20px;
+    padding: 20px;
+  }
+
+  button {
+    width: 100%;
+  }
+
+  .contact-item {
+    flex-direction: column;
+    text-align: center;
+    gap: 12px;
+  }
+
+  .action-buttons {
+    justify-content: center;
+    width: 100%;
+  }
+
+  input {
+    width: 90%;
+  }
+}

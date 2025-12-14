@@ -1,54 +1,62 @@
-import React, { useState } from "react";
+import { useEffect, useState } from "react";
 
-const empty = { name: "", phone: "" };
+function ContactForm({ onSave, editingContact, onCancel }) {
+  const [name, setName] = useState("");
+  const [phone, setPhone] = useState("");
 
-export default function ContactForm({ onSave, editingContact, onCancel }) {
-  // initialiser uses editingContact only at mount (remount when key changes)
-  const [form, setForm] = useState(() => {
-    return editingContact
-      ? { name: editingContact.name || "", phone: editingContact.phone || "", id: editingContact.id }
-      : empty;
-  });
+// eslint-disable-next-line react-hooks/set-state-in-effect
+useEffect(() => {
+  if (!editingContact) return;
 
-  const handleChange = (e) => {
-    setForm(prev => ({ ...prev, [e.target.name]: e.target.value }));
+  setName(editingContact.name || "");
+  setPhone(editingContact.phone || "");
+}, [editingContact]);
+
+
+  const submit = () => {
+    if (!name || !phone) {
+      alert("Please fill all fields");
+      return;
+    }
+
+    onSave({
+      id: editingContact?.id,
+      name,
+      phone,
+    });
+
+    setName("");
+    setPhone("");
   };
-
-const handleSubmit = (e) => {
-  e.preventDefault();
-  if (!form.name.trim()) return alert('Name is required');
-  if (!form.phone.trim()) return alert('Phone is required');
-
-  const payload = {
-    ...form,
-    name: form.name.trim(),
-    phone: form.phone.trim(),
-    id: editingContact?.id || Date.now(), // <-- important fix
-  };
-
-  onSave(payload);
-  setForm(empty);
-};
-
 
   return (
-    <form className="card form" onSubmit={handleSubmit}>
-      <h3>{editingContact ? "Edit Contact" : "Add Contact"}</h3>
+    <div className="formdiv">
+      <h3>{editingContact ? "Edit Contact" : "Add Contact"}</h3><br></br>
 
-      <label>
-        Name
-        <input name="name" value={form.name} onChange={handleChange} placeholder="Full name" />
-      </label>
+      <input
+  type="text"
+  placeholder="Name"
+  className="form-input"
+  value={name}
+  onChange={(e) => setName(e.target.value)}
+/><br></br>
 
-      <label>
-        Phone
-        <input name="phone" value={form.phone} onChange={handleChange} placeholder="Phone number" />
-      </label>
+<input
+  type="tel"
+  placeholder="Phone Number"
+  className="form-input"
+  value={phone}
+  onChange={(e) => setPhone(e.target.value)}
+/>
+      <button onClick={submit} className="btn">
+        {editingContact ? "Update" : "Add"}
+      </button>
 
-      <div className="form-actions">
-        <button type="submit">{editingContact ? "Save" : "Add"}</button>
-        {editingContact && <button type="button" className="btn-secondary" onClick={onCancel}>Cancel</button>}
-      </div>
-    </form>
+      {editingContact && (
+        <button onClick={onCancel} className="btn">Cancel</button>
+      )}
+    </div>
   );
 }
+
+export default ContactForm;

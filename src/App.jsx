@@ -1,92 +1,74 @@
-import React, { useState, useMemo } from 'react';
-import useLocalStorage from './hooks/useLocalStorage';
+import { useEffect, useState } from "react";
+import API from "./api";
 import ContactForm from "./components/ContactForm";
 import ContactList from "./components/ContactList";
-import ContactItem from "./components/ContactItem";
-import './index.css';
 
 function App() {
-  const [contacts, setContacts] = useLocalStorage('pb_contacts', []);
+  const [contacts, setContacts] = useState([]);
+  const [search, setSearch] = useState("");
   const [editing, setEditing] = useState(null);
-  const [query, setQuery] = useState('');
 
-  // Save or update a contact
-  const handleSave = (contact) => {
-    setContacts((prev) => {
-      // Check if contact already exists
-      const exists = prev.find((p) => p.id === contact.id);
-      if (exists) {
-        // Update existing contact
-        return prev.map((p) => (p.id === contact.id ? contact : p));
-      }
-      // Add new contact
-      return [contact, ...prev];
-    });
+  // FETCH CONTACTS
+  const loadContacts = () => {
+    API.get("/contacts")
+      .then(res => setContacts(res.data))
+      .catch(err => console.error(err));
+  };
+
+  useEffect(() => {
+    loadContacts();
+  }, []);
+
+  // ADD or UPDATE
+  const saveContact = (contact) => {
+    if (contact.id) {
+      // UPDATE
+      API.put(`/contacts/${contact.id}`, contact)
+        .then(loadContacts);
+    } else {
+      // ADD
+      API.post("/contacts", contact)
+        .then(loadContacts);
+    }
     setEditing(null);
   };
 
-  // Delete contact
-  const handleDelete = (id) => {
-    setContacts((prev) => prev.filter((p) => p.id !== id));
+  // DELETE
+  const deleteContact = (id) => {
+    if (!window.confirm("Delete contact?")) return;
+    API.delete(`/contacts/${id}`)
+      .then(loadContacts);
   };
 
-  // Edit contact
-  const handleEdit = (contact) => setEditing(contact);
+const filteredContacts = contacts
+  .filter(c =>
+    c.name.toLowerCase().includes(search.toLowerCase()) ||
+    c.phone.includes(search)
+  )
+  .sort((a, b) => a.name.localeCompare(b.name));
 
-  // Cancel editing
-  const handleCancelEdit = () => setEditing(null);
-
-  // Filter contacts based on search query
-
-  const filtered = useMemo(() => {
-  const q = query.trim().toLowerCase();
-
-  // 1. Sort alphabetically by name
-  const sorted = [...contacts].sort((a, b) =>
-    a.name.localeCompare(b.name)
-  );
-
-  // 2. Apply search filter
-  if (!q) return sorted;
-
-  return sorted.filter(
-    (c) =>
-      c.name.toLowerCase().includes(q) ||
-      c.phone.toLowerCase().includes(q)
-  );
-}, [contacts, query]);
 
   return (
-    <div className="app-root">
-      <div className="container">
-        <header className="header">
-          <h1>Phone Book</h1>
-          <div className="header-controls">
-            <input
-              placeholder="Search by name or phone"
-              value={query}
-              onChange={(e) => setQuery(e.target.value)}
-            />
-          </div>
-          <div className="count">{contacts.length} contacts</div><br></br>
-        </header>
+    <div className="app">
+      <h1>📞 Phone Book</h1>
 
-        <main className="grid-two">
-          <ContactForm
-            onSave={handleSave}
-            editingContact={editing}
-            onCancel={handleCancelEdit}
-          /><br></br><br></br><br></br>
+      <input className="search-input"
+        placeholder="Search by name or phone"
+        value={search}
+        onChange={e => setSearch(e.target.value)}
+      />
 
-          <div>
-            <ContactList
-              contacts={filtered}
-              onEdit={handleEdit}
-              onDelete={handleDelete}
-            />
-          </div>
-        </main>
-      </div>
+      <ContactForm
+        onSave={saveContact}
+        editingContact={editing}
+        onCancel={() => setEditing(null)}
+      />
+
+      <ContactList
+        contacts={filteredContacts}
+        onEdit={setEditing}
+        onDelete={deleteContact}
+      />
     </div>
   );
 }

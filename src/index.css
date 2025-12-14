@@ -1,234 +1,305 @@
+/* =====================
+   GLOBAL RESET
+===================== */
 * {
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
-  font-family: "Poppins", sans-serif;
+  font-family: "Segoe UI", sans-serif;
+  transition: all 0.3s ease;
 }
 
 body {
-  background: linear-gradient(145deg, #a8d0ff, #74b9ff, #4a90e2);
   min-height: 100vh;
+  background: linear-gradient(135deg, #c3e0ff, #a3d4ff);
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  padding: 30px;
-  font-weight: bold;
+  padding: 20px;
 }
-
-/* -------------------------------------------------- */
-/* Main Glass Card */
-.app-container {
-  width: 430px;
-  padding: 26px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-
-  border-radius: 28px;
-  background: rgba(255, 255, 255, 0.25);
-  backdrop-filter: blur(20px);
-
-  box-shadow: 
-      0 25px 45px rgba(0, 0, 0, 0.25),
-      inset 0 0 40px rgba(255, 255, 255, 0.2);
-
-  animation: fadeIn 0.6s ease-out;
-  margin: 0 auto;
-}
-
-/* Fade In Animation */
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(40px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-
-/* -------------------------------------------------- */
-/* TITLE */
-h1 {
+.app h1{
   text-align: center;
-  font-size: 34px;
-  color: #0a3d62;
-  font-weight: 700;
-  margin-bottom: 20px;
-  text-shadow: 0 0 12px rgba(255,255,255,0.35);
 }
-
-/* -------------------------------------------------- */
-/* FORM */
-form {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 16px;
-}
-
-label {
-  font-size: 18px;
-  display: flex;
-  align-items: center;
-  gap: 20px;
-  color: #0a3d62;
-}
-
-input {
-  padding: 14px;
-  font-size: 15px;
-  border: none;
-  border-radius: 16px;
-  background: rgba(255,255,255,0.85);
-  backdrop-filter: blur(15px);
-  width: 350px;
-  max-width: 100%;
-  box-shadow: inset 3px 3px 8px rgba(0,0,0,0.12),
-              inset -3px -3px 8px rgba(255,255,255,0.7);
-  transition: 0.25s;
-}
-
-input:focus {
-  outline: none;
-  transform: scale(1.03);
-  box-shadow: 0 0 12px rgba(0,123,255,0.35);
-}
-
-.header-controls{
-  width: 90%;
-  padding: 14px;
-  border-radius: 15px;
-  border: none;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-  margin-bottom: 12px;
-  background: rgba(255,255,255,0.8);
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  outline: none;
-}
-
-.count{
-  color: #0a3d62;
-  font-weight: bold;
-  display: flex;
-  justify-content: center;
-}
-
-/* -------------------------------------------------- */
-/* BUTTONS */
-button {
-  border: none;
-  padding: 14px 20px;
-  font-size: 16px;
-  font-weight: 600;
-  border-radius: 16px;
-  cursor: pointer;
-  width: 100%;
-  background: linear-gradient(135deg, #74b9ff, #0984e3);
-  color: #fff;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-  box-shadow: 0 8px 20px rgba(0, 123, 255, 0.3);
-  transition: 0.3s;
-}
-
-button:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 12px 28px rgba(0,123,255,0.45);
-}
-
-/* -------------------------------------------------- */
-/* CONTACT LIST */
+/* =====================
+   CONTACT CARD
+===================== */
 .contact-item {
-  margin-top: 20px;
-  padding: 18px;
-  border-radius: 20px;
-
+  max-width: 450px;
+  white-space: normal;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 22px;
+  padding: 20px 20px;
+  margin-top: 18px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
   display: flex;
   justify-content: space-between;
   align-items: center;
-
-  background: rgba(255,255,255,0.9);
-  backdrop-filter: blur(12px);
-
-  box-shadow: 5px 5px 20px rgba(0,0,0,0.15),
-              -5px -5px 20px rgba(255,255,255,0.6);
-
-  transition: 0.25s;
+  transform: translateY(0);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  padding-right: 20px;
 }
 
 .contact-item:hover {
-  transform: scale(1.03);
+  transform: translateY(-5px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.15);
 }
 
-.contact-info h3 {
-  font-size: 18px;
-  color: #0a3d62;
-}
-
-.contact-info p {
-  font-size: 14px;
-  color: #3c6382;
-}
-
-/* -------------------------------------------------- */
-/* -------------------------------------------------- */
-/* ACTION BUTTONS */
-.action-buttons {
+/* LEFT SIDE */
+.contact-left {
   display: flex;
-  gap: 18px;  /* increased gap between buttons */
+  gap: 16px;
+  font-weight: bold;
+  align-items: center;
 }
 
-.action-buttons button {
-  width: auto;
-  padding: 10px 16px;  /* slightly larger padding for better touch area */
+.avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #6bb8ff, #2f80ed);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.avatar:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+}
+
+.contact-info {
+  display: flex;
+  flex-direction: column;
+  max-width: 180px; 
+  overflow: hidden; /* ensures content does not spill */
+  padding-left: 9px;
+  padding-right: 9px;
+}
+
+.contact-info .name {
+  font-weight: 700;
+  color: #0f2a44;
+  font-size: 16px;
+  white-space: nowrap;      /* keep text in single line */
+  overflow: hidden;         /* hide overflow */
+  text-overflow: ellipsis;  /* show ... for long text */
+}
+
+.contact-info .phone {
   font-size: 13px;
+  color: #555;
+  white-space: nowrap;
+  overflow: hidden;
+  font-weight: bold;
+  text-overflow: ellipsis;
+}
+
+/* =====================
+   ACTION BUTTONS
+===================== */
+.contact-actions {
+  display: flex;
+  gap: 10px;
   border-radius: 12px;
-  box-shadow: none;
+  font-weight: bold;
 }
 
+.contact-actions button {
+  border: none;
+  padding: 8px 14px;
+  border-radius: 16px;
+  font-size: 16px;
+  font-weight: bold;
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
 
-/* Call Button (Green) */
+.contact-actions button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);
+}
+
 .call-btn {
-  background: #2ecc71;
+  background: linear-gradient(135deg, #2ecc71, #27ae60);
+  width: 59px;
+  padding: 6px 9px;
+  padding-left: 15px;
+  border-radius: 15px;
+  font-weight: bold;
+  color:white;
+  font-size: 16px;
+  text-decoration: none;
+}
+.call-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);
 }
 
-/* Edit Button (Blue) */
 .edit-btn {
-  background: #0984e3;
+  background: linear-gradient(135deg, #f2994a, #f2c94c);
 }
 
-/* Delete Button (Red) */
 .delete-btn {
-  background: #d63031;
+  background: linear-gradient(135deg, #eb5757, #ff7675);
+}
+/* =====================
+   SEARCH BAR
+===================== */
+.search-input {
+  width: 100%;
+  max-width: 450px;
+  padding: 14px 18px;
+  border-radius: 14px;
+  border: none;
+  font-weight: bold;
+  font-size: 16px;
+  margin: 18px 0;
+  background: #d0e7ff;
+  color: #0d47a1;
+  outline: none;
+  transition: all 0.3s ease;
 }
 
-/* -------------------------------------------------- */
-/* RESPONSIVE */
+.search-input:focus {
+  box-shadow: 0 0 8px #90caf9;
+  transform: scale(1.02);
+}
+
+.search-input::placeholder {
+  color: #5472d3;
+}
+
+/* =====================
+   FORM INPUTS
+===================== */
+.form-input {
+  width: 100%;
+  max-width: 450px;
+  padding: 14px 16px;
+  border-radius: 14px;
+  border: none;
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 14px;
+  background: #d0e7ff;
+  color: #0d47a1;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.form-input:focus {
+  box-shadow: 0 0 6px #90caf9;
+  transform: scale(1.02);
+}
+
+.form-input::placeholder {
+  color: #5472d3;
+}
+
+.form-group {
+  margin-bottom: 16px;
+}
+
+.form-group label {
+  font-size: 14px;
+  font-weight: 600;
+  color: #0f2a44;
+  display: block;
+  margin-bottom: 6px;
+}
+.btn {
+  padding: 10px 25px;           /* balanced padding for all buttons */
+  border-radius: 22px;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 16px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  transition: all 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease, background 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Hover effect for all buttons */
+.btn:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+}
+
+/* Active/Pressed Effect */
+.btn:active {
+  transform: translateY(1px) scale(0.98);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+/* -------------------
+   Individual Button Styles
+------------------- */
+
+/* ADD BUTTON */
+.btn.add {
+  background: linear-gradient(135deg, #6bb8ff, #2f80ed);
+}
+
+.btn.add:hover {
+  background: linear-gradient(135deg, #2f80ed, #6bb8ff); /* subtle gradient shift */
+}
+
+/* UPDATE BUTTON */
+.btn.update {
+  background: linear-gradient(135deg, #2ecc71, #27ae60);
+}
+
+.btn.update:hover {
+  background: linear-gradient(135deg, #27ae60, #2ecc71); /* subtle gradient shift */
+}
+
+/* CANCEL BUTTON */
+.btn.cancel {
+  background: linear-gradient(135deg, #eb5757, #ff7675);
+}
+
+.btn.cancel:hover {
+  background: linear-gradient(135deg, #ff7675, #eb5757); /* subtle gradient shift */
+}
+.formdiv h3{
+  text-align: center;
+  font-weight: bold;
+  font-size: 22px;
+}
+/* =====================
+   MOBILE OPTIMIZATION
+===================== */
 @media (max-width: 480px) {
-  .app-container {
-    width: 95%;
-    border-radius: 20px;
-    padding: 20px;
-  }
-
-  button {
-    width: 100%;
-  }
-
   .contact-item {
     flex-direction: column;
-    text-align: center;
-    gap: 12px;
+    align-items: flex-start;
+    gap: 14px;
   }
 
-  .action-buttons {
-    justify-content: center;
+  .contact-actions {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .contact-actions button {
+    flex: 1;
+  }
+
+  .form-actions {
+    flex-direction: column;
+    gap: 10px;
     width: 100%;
   }
 
-  input {
-    width: 90%;
+  .form-actions button {
+    width: 100%;
   }
 }

@@ -1,5 +1,7 @@
 import axios from "axios";
 
-export default axios.create({
-  baseURL: "https://phonebook-api.onrender.com"
+const API = axios.create({
+  baseURL: "https://phonebook-api-u7q6.onrender.com"
 });
+
+export default API;

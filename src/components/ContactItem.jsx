@@ -43,7 +43,7 @@ function ContactItem({ contact, onEdit, onDelete, onBlock }) {
           onClick={callPerson}
           className="call-btn"
         >
-           {isBlocked ? "❌ Call" : "Call"}
+           {isBlocked ? "Call" : "Call"}
         </button>
 
         <select
@@ -51,13 +51,13 @@ function ContactItem({ contact, onEdit, onDelete, onBlock }) {
           onChange={handleMessage}
           className="msg-select"
         >
-          <option value=""> {isBlocked ? "❌Msg" : "Msg"} </option>
+          <option value=""> {isBlocked ? "Msg" : "Msg"} </option>
           <option value="whatsapp">WhatsApp</option>
           <option value="sms">SMS</option>
         </select>
 
         <button onClick={() => onEdit(contact)} className="edit-btn" disabled={isBlocked}>
-           {isBlocked ? "❌Edit" : "Edit"}
+           {isBlocked ? "Edit" : "Edit"}
         </button>
 
         <button onClick={() => onDelete(contact.id)} className="delete-btn">

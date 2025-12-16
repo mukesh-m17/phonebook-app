@@ -256,21 +256,22 @@ body {
     padding: 0;
   }
 
-  /* Buttons aligned in a single row */
+  /* Buttons aligned in a single row, wider width */
   .contact-actions {
     width: 100%;
     display: flex;
     justify-content: center;
-    gap: 10px;
-    flex-wrap: nowrap;      /* keep buttons in one line */
+    gap: 12px;         /* slightly more space between buttons */
+    flex-wrap: nowrap;  /* keep buttons in one line */
   }
 
   .contact-actions button {
-    flex: 1;
-    min-width: 50px;
-    max-width: 120px;
-    font-size: 14px;
-    padding: 8px 10px;
+    flex: 1;               /* take equal space */
+    min-width: 70px;       /* wider than before */
+    max-width: 140px;      /* prevent too wide buttons */
+    font-size: 15px;       /* readable text */
+    padding: 10px 12px;    /* taller and wider for touch */
+    border-radius: 18px;   /* slightly more rounded */
   }
 
   /* Block/unblock button stays top-right */
@@ -278,7 +279,7 @@ body {
   .contact-actions .unblock-btn {
     top: 12px;
     right: 12px;
-    padding: 4px 8px;
+    padding: 4px 10px;     /* keep small */
     font-size: 12px;
   }
 }
@@ -362,7 +363,6 @@ body {
 }
 
 .msg-select {
-  background: linear-gradient(135deg, #4da6ff, #007bff);
   padding: 10px 42px 10px 18px;
   width: 110px;
   border-radius: 20px;

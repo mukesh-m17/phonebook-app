@@ -24,15 +24,15 @@ body {
    CONTACT CARD
 ===================== */
 .contact-item {
-  max-width: 450px;
+  max-width: 440px;
   height: 190px;
   white-space: normal;
   width: 100%;
   background: rgba(255, 255, 255, 0.95);
   border-radius: 22px;
-  padding-left: 21px;
+  padding-left: 20px;
   padding-bottom: 20px;
-  padding-right: 20px;
+  padding-right: 18px;
   padding-top: 15px;
   margin-top: 18px;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
@@ -120,7 +120,7 @@ body {
 .contact-actions button {
   border: none;
   height: 55px;
-  padding: 8px 14px;
+  padding: 8px 13px;
   border-radius: 16px;
   font-size: 16px;
   font-weight: bold;
@@ -288,6 +288,8 @@ body {
 }
 .unblock-btn{
   background-color: green;
+  width: 82px;
+  font-size: 10px;
 }
 /* -------------------
    Individual Button Styles
@@ -341,6 +343,16 @@ body {
 
   .contact-actions button {
     flex: 1;
+  }
+  .contact-info{
+   display:flex;
+   justify-content: center;
+   align-items: center;
+  }
+  .avatar{
+    display:flex;
+   justify-content: center;
+   align-items: center;
   }
 
   .form-actions {

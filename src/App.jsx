@@ -61,6 +61,7 @@ const handleBlock = (contact) => {
     )
   );
 };
+
   return (
     <div className="app">
       <h1>📞 Phone Book</h1>

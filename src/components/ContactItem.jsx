@@ -59,13 +59,14 @@ function ContactItem({ contact, onEdit, onDelete, onBlock }) {
         <button onClick={() => onDelete(contact.id)} className="delete-btn">
          Delete
         </button>
-
-        <button
+        <div className="Blockbtn-div">
+          <button
           className={isBlocked ? "unblock-btn" : "block-btn"}
           onClick={() => onBlock(contact)}
         >
           {isBlocked ? "Unblock" : "Block"}
         </button>
+        </div>
       </div>
     </div>
   );

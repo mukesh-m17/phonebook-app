@@ -24,6 +24,7 @@ body {
    CONTACT CARD
 ===================== */
 .contact-item {
+   position: relative;
   max-width: 440px;
   height: 200px;
   white-space: normal;
@@ -110,53 +111,178 @@ body {
 /* =====================
    ACTION BUTTONS
 ===================== */
+/* =======================
+   CONTACT ACTION BUTTONS
+======================= */
 .contact-actions {
   display: flex;
   gap: 10px;
   border-radius: 12px;
   font-weight: bold;
+  justify-content: center; /* center buttons horizontally */
 }
 
 .contact-actions button {
   border: none;
-  height: 55px;
-  padding: 8px 13px;
-  border-radius: 16px;
-  font-size: 16px;
+  height: 50px;             /* uniform height */
+  padding: 8px 15px;        /* balanced padding */
+  border-radius: 16px;      /* rounded corners */
+  font-size: 15px;          /* readable text */
   font-weight: bold;
   color: white;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
 }
 
+/* Hover effect for main buttons */
 .contact-actions button:hover {
-  transform: scale(1.05);
+  transform: scale(1.04);
   box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);
 }
 
+/* ------------------------
+   INDIVIDUAL BUTTON STYLES
+------------------------ */
+
+/* Call Button - Green */
 .call-btn {
- background: linear-gradient(135deg, #4cd964, #28a745);
-  width: 59px;
-  padding: 6px 9px;
-  padding-left: 15px;
-  border-radius: 15px;
-  font-weight: bold;
-  color:white;
-  font-size: 16px;
-  text-decoration: none;
-}
-.call-btn:hover {
-  transform: scale(1.05);
-  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);
+  background: linear-gradient(135deg, #4cd964, #28a745);
+  width: 60px;
+  padding: 6px 10px;
+  border-radius: 16px;
+  font-size: 15px;
 }
 
+/* Edit Button - Yellow/Orange */
 .edit-btn {
   background: linear-gradient(135deg, #f7d794, #f39c12);
+  color: #333;
 }
 
+/* Delete Button - Red Gradient */
 .delete-btn {
-   background-color: red; 
+  background: red;
 }
+
+/* Block Button - Top Right */
+.block-btn {
+  background: linear-gradient(135deg, #ff8a80, #ff5252);
+  position: absolute;       /* relative to .contact-item */
+  top: 12px;
+  right: 12px;
+  padding: 4px 10px;
+  font-size: 12px;
+  border-radius: 16px;
+  height: auto;
+  z-index: 10;
+  color: white;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.block-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 5px 12px rgba(0,0,0,0.15);
+}
+
+/* Unblock Button - Top Right */
+.unblock-btn {
+  background: linear-gradient(135deg, #4cd964, #28a745);
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  padding: 4px 10px;
+  font-size: 12px;
+  border-radius: 16px;
+  height: auto;
+  z-index: 10;
+  color: white;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.unblock-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 5px 12px rgba(0,0,0,0.15);
+}
+
+/* ------------------------
+   DISABLED BUTTONS WHEN BLOCKED
+------------------------ */
+.contact-item.blocked .contact-actions button:not(.block-btn):not(.unblock-btn) {
+  background: #cccccc !important;
+  color: #666666 !important;
+  cursor: not-allowed;
+  box-shadow: none;
+  pointer-events: none;
+  transform: none;
+}
+
+/* =======================
+   MOBILE RESPONSIVE
+======================= */
+@media (max-width: 480px) {
+  .contact-item {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: 20px;
+    height: auto;
+  }
+
+  /* Avatar + Info stacked vertically */
+  .contact-left {
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+  }
+
+  .avatar {
+    width: 60px;
+    height: 60px;
+  }
+
+  .contact-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    max-width: 100%;
+    text-align: center;
+    padding: 0;
+  }
+
+  /* Buttons aligned in a single row */
+  .contact-actions {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: nowrap;      /* keep buttons in one line */
+  }
+
+  .contact-actions button {
+    flex: 1;
+    min-width: 50px;
+    max-width: 120px;
+    font-size: 14px;
+    padding: 8px 10px;
+  }
+
+  /* Block/unblock button stays top-right */
+  .contact-actions .block-btn,
+  .contact-actions .unblock-btn {
+    top: 12px;
+    right: 12px;
+    padding: 4px 8px;
+    font-size: 12px;
+  }
+}
+
 /* =====================
    SEARCH BAR
 ===================== */
@@ -284,18 +410,6 @@ body {
   transform: translateY(1px) scale(0.98);
   box-shadow: 0 4px 12px rgba(0,0,0,0.2);
 }
-.block-btn{
-   background: linear-gradient(135deg, #ff6b6b, #ff4d4d);
-}
-.unblock-btn{
-  background: linear-gradient(135deg, #4cd964, #28a745);
-  width: 82px;
-  font-size: 10px;
-}
-/* -------------------
-   Individual Button Styles
-------------------- */
-
 /* ADD BUTTON */
 .btn.add {
   background: linear-gradient(135deg, #6bb8ff, #2f80ed);
@@ -326,141 +440,4 @@ body {
   text-align: center;
   font-weight: bold;
   font-size: 22px;
-}
-/* =====================
-   MOBILE OPTIMIZATION
-===================== */
-/* =====================
-   MOBILE OPTIMIZATION
-===================== */
-@media (max-width: 480px) {
-  @media (max-width: 480px) {
-  .contact-item {
-    flex-direction: column;
-    align-items: center;       /* center avatar + info */
-    justify-content: center;
-    gap: 12px;
-    padding: 20px;
-    height: auto;             /* auto height for smaller screens */
-  }
-
-  /* Avatar + Info stacked vertically */
-  .contact-left {
-    flex-direction: column;   /* stack avatar and info */
-    align-items: center;
-    gap: 8px;
-    width: 100%;
-  }
-
-  .avatar {
-    width: 60px;
-    height: 60px;
-  }
-
-  .contact-info {
-    display: flex;
-    flex-direction: column;
-    align-items: center;      /* center text */
-    justify-content: center;
-    max-width: 100%;
-    text-align: center;
-    padding: 0;
-  }
-
-  /* Buttons aligned in a single row */
-  .contact-actions {
-    width: 100%;
-    display: flex;
-    justify-content: center;  /* center buttons horizontally */
-    gap: 10px;                /* space between buttons */
-    flex-wrap: nowrap;        /* prevent wrapping */
-    flex-shrink: 0;
-    margin-top: 10px;
-  }
-
-  .contact-actions button {
-    flex: 1;                  /* buttons take equal space */
-    min-width: 60px;          /* minimum width for touch */
-    max-width: 120px;         /* prevent too wide buttons */
-    font-size: 14px;
-    padding: 10px 12px;
-    border-radius: 22px;
-  }
-
-  /* Keep block/unblock button slightly smaller if needed */
-  .contact-actions .block-btn,
-  .contact-actions .unblock-btn {
-    max-width: 90px;
-    font-size: 13px;
-  }
-}
-  .contact-actions {
-    width: 100%;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 14px; /* comfortable spacing */
-    padding-top: 10px;
-    padding-bottom: 5px;
-  }
-
-  .contact-actions button {
-    flex: 1;
-    max-width: 130px;
-    padding: 12px 20px; /* bigger tap area */
-    border-radius: 25px; /* pill shape */
-    font-size: 15px;
-    font-weight: 600;
-    color: #fff;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08); /* soft shadow */
-    transition: all 0.3s ease;
-  }
-
-  .contact-actions .call-btn {
-    background: linear-gradient(135deg, #58d68d, #2ecc71); /* softer green */
-  }
-
-  .contact-actions .edit-btn {
-    background: linear-gradient(135deg, #f7dc6f, #f4d03f); /* soft yellow */
-    color: #333; /* easier on eyes */
-  }
-
-  .contact-actions .delete-btn {
-    background: linear-gradient(135deg, #f1948a, #ec7063); /* soft red */
-  }
-
-  .contact-actions button:hover {
-    transform: scale(1.06);
-    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.12);
-  }
-
-  /* Optional: icons for clarity without text overload */
-  .contact-actions button i {
-    margin-right: 6px;
-    font-size: 16px;
-  }
-  /* =========================
-   BLOCKED CONTACT BUTTONS
-========================= */
-.contact-item.blocked .contact-actions button {
-  cursor: not-allowed;      /* show disabled cursor */
-  opacity: 0.5;             /* fade buttons */
-  box-shadow: none;          /* remove shadows */
-  transform: none;           /* remove hover scale effect */
-  background: #cccccc !important; /* neutral grey background */
-  color: #666666 !important;      /* darker grey text */
-  pointer-events: none;      /* prevent clicks */
-}
-
-/* Optional: keep block/unblock button active */
-.contact-item.blocked .contact-actions .block-btn,
-.contact-item.blocked .contact-actions .unblock-btn {
-  cursor: pointer;
-  opacity: 1;
-  pointer-events: auto;
-  background: linear-gradient(135deg, #ff7675, #eb5757); /* or green for unblock */
-  color: white;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-  transform: scale(1);
-}
-
 }

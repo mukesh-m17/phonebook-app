@@ -26,7 +26,27 @@ function App() {
   }
 };
 const addContact = async (contact) => {
-  const res = await API.post("/contacts", contact);
+  // normalize values
+  const name = contact.name.trim().toLowerCase();
+  const phone = contact.phone.trim();
+
+  // check duplicate
+  const exists = contacts.some(
+    c =>
+      c.name.trim().toLowerCase() === name &&
+      c.phone.trim() === phone
+  );
+
+  if (exists) {
+    alert("⚠️ Contact already exists");
+    return;
+  }
+
+  // add if not duplicate
+  const res = await API.post("/contacts", {
+    ...contact,
+    blocked: false,
+  });
 
   const sorted = [...contacts, res.data].sort((a, b) =>
     a.name.toLowerCase().localeCompare(b.name.toLowerCase())
@@ -34,7 +54,6 @@ const addContact = async (contact) => {
 
   setContacts(sorted);
 };
-
   const saveContact = (contact) => {
     if (contact.id) {
       API.put(`/contacts/${contact.id}`, contact)

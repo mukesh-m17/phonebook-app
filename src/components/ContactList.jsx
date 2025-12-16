@@ -1,6 +1,6 @@
 import ContactItem from "./ContactItem";
 
-function ContactList({ contacts, onEdit, onDelete }) {
+function ContactList({ contacts, onEdit, onDelete, onBlock }) {
   if (contacts.length === 0) {
     return <p>No contacts found</p>;
   }

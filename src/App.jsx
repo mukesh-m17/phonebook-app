@@ -2,52 +2,65 @@ import { useEffect, useState } from "react";
 import API from "./api";
 import ContactForm from "./components/ContactForm";
 import ContactList from "./components/ContactList";
+import ContactItem from "./components/ContactItem"
 
 function App() {
   const [contacts, setContacts] = useState([]);
   const [search, setSearch] = useState("");
   const [editing, setEditing] = useState(null);
 
-  // FETCH CONTACTS
-  const loadContacts = () => {
-    API.get("/contacts")
-      .then(res => setContacts(res.data))
-      .catch(err => console.error(err));
-  };
-
   useEffect(() => {
     loadContacts();
   }, []);
+  const loadContacts = async () => {
+  try {
+    const res = await API.get("/contacts");
 
-  // ADD or UPDATE
+    const sortedContacts = res.data.sort((a, b) =>
+      a.name.toLowerCase().localeCompare(b.name.toLowerCase())
+    );
+
+    setContacts(sortedContacts);
+  } catch (error) {
+    console.error(error);
+  }
+};
+const addContact = async (contact) => {
+  const res = await API.post("/contacts", contact);
+
+  const sorted = [...contacts, res.data].sort((a, b) =>
+    a.name.toLowerCase().localeCompare(b.name.toLowerCase())
+  );
+
+  setContacts(sorted);
+};
+
   const saveContact = (contact) => {
     if (contact.id) {
-      // UPDATE
       API.put(`/contacts/${contact.id}`, contact)
         .then(loadContacts);
     } else {
-      // ADD
       API.post("/contacts", contact)
         .then(loadContacts);
     }
     setEditing(null);
   };
 
-  // DELETE
   const deleteContact = (id) => {
     if (!window.confirm("Delete contact?")) return;
     API.delete(`/contacts/${id}`)
       .then(loadContacts);
   };
 
-const filteredContacts = contacts
-  .filter(c =>
-    c.name.toLowerCase().includes(search.toLowerCase()) ||
-    c.phone.includes(search)
-  )
-  .sort((a, b) => a.name.localeCompare(b.name));
-
-
+const handleBlock = (contact) => {
+  setContacts((prev) =>
+    prev.map((c) =>
+      c.id === contact.id
+        ? { ...c, blocked: !c.blocked }
+        : c
+    )
+  );
+};
   return (
     <div className="app">
       <h1>📞 Phone Book</h1>
@@ -60,15 +73,20 @@ const filteredContacts = contacts
 
       <ContactForm
         onSave={saveContact}
+        onAdd={addContact}
         editingContact={editing}
         onCancel={() => setEditing(null)}
       />
 
-      <ContactList
-        contacts={filteredContacts}
+      {contacts.map((contact) => (
+        <ContactItem
+        key={contact.id}
+        contact={contact}
         onEdit={setEditing}
         onDelete={deleteContact}
-      />
+        onBlock={handleBlock} 
+  />
+))}
     </div>
   );
 }

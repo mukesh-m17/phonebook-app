@@ -25,14 +25,19 @@ body {
 ===================== */
 .contact-item {
   max-width: 450px;
+  height: 190px;
   white-space: normal;
   width: 100%;
   background: rgba(255, 255, 255, 0.95);
   border-radius: 22px;
-  padding: 20px 20px;
+  padding-left: 21px;
+  padding-bottom: 20px;
+  padding-right: 20px;
+  padding-top: 15px;
   margin-top: 18px;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
   align-items: center;
   transform: translateY(0);
@@ -76,10 +81,12 @@ body {
 .contact-info {
   display: flex;
   flex-direction: column;
+  align-items: center;
   max-width: 180px; 
   overflow: hidden; /* ensures content does not spill */
   padding-left: 9px;
   padding-right: 9px;
+  padding-bottom: 10px;
 }
 
 .contact-info .name {
@@ -112,6 +119,7 @@ body {
 
 .contact-actions button {
   border: none;
+  height: 55px;
   padding: 8px 14px;
   border-radius: 16px;
   font-size: 16px;
@@ -227,7 +235,44 @@ body {
   overflow: hidden;
 }
 
-/* Hover effect for all buttons */
+.msg-select {
+  padding: 10px 42px 10px 18px;
+  width: 110px;
+  border-radius: 20px;
+  border: none;
+  font-size: 15px;
+  font-weight: bold;
+  color: white; /* BLACK TEXT */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+  cursor: pointer;
+  transition: all 0.25s ease;
+  background-color: #0026ffd3;
+}
+
+/* Hover */
+.msg-select:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+}
+
+/* Focus */
+.msg-select:focus {
+  outline: none;
+  border-color: #000;
+  box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.2);
+}
+
+/* Active */
+.msg-select:active {
+  transform: scale(0.98);
+}
+
+/* Options */
+.msg-select option {
+  background: #ffffff;
+  color: #000;
+}
+
 .btn:hover {
   transform: translateY(-3px) scale(1.05);
   box-shadow: 0 8px 20px rgba(0,0,0,0.25);
@@ -238,7 +283,12 @@ body {
   transform: translateY(1px) scale(0.98);
   box-shadow: 0 4px 12px rgba(0,0,0,0.2);
 }
-
+.block-btn{
+  background-color: red;
+}
+.unblock-btn{
+  background-color: green;
+}
 /* -------------------
    Individual Button Styles
 ------------------- */
@@ -303,3 +353,18 @@ body {
     width: 100%;
   }
 }
+.blocked {
+  opacity: 0.4;
+  background: #f3f3f3;
+}
+
+.btn.msg {
+  background: #6c5ce7;
+  color: white;
+}
+
+.btn.block {
+  background: #ff7675;
+  color: white;
+}
+

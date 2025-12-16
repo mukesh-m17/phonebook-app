@@ -1,16 +1,18 @@
 import { useEffect, useState } from "react";
 
-function ContactForm({ onSave, editingContact, onCancel }) {
+function ContactForm({ onSave, editingContact, onCancel, onAdd}) {
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
 
-// eslint-disable-next-line react-hooks/set-state-in-effect
 useEffect(() => {
   if (!editingContact) return;
 
   setName(editingContact.name || "");
   setPhone(editingContact.phone || "");
 }, [editingContact]);
+ const handleSubmit = () => {
+    onAdd({ name, phone });
+  };
 
 
   const submit = () => {

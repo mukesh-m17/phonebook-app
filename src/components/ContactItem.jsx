@@ -30,9 +30,13 @@ function ContactItem({ contact, onEdit, onDelete, onBlock }) {
       <div className="avatar">{contact.name[0]}</div>
 
       <div className="contact-info">
-        <h3>{contact.name}</h3>
-        <p>{contact.phone}</p>
-      </div>
+  <h3>{contact.name}</h3>
+  <p>{contact.phone}</p>
+<p className="blocked-message">
+  {isBlocked ? "🚫 You blocked this contact" : ""}
+</p>
+</div>
+
       <div className="contact-actions">
         <button
           disabled={isBlocked}

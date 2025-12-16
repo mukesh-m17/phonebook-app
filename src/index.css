@@ -155,7 +155,7 @@ body {
 }
 
 .delete-btn {
-   background: linear-gradient(135deg, #ff7f7f, #e74c3c); 
+   background-color: red; 
 }
 /* =====================
    SEARCH BAR
@@ -334,6 +334,66 @@ body {
    MOBILE OPTIMIZATION
 ===================== */
 @media (max-width: 480px) {
+  @media (max-width: 480px) {
+  .contact-item {
+    flex-direction: column;
+    align-items: center;       /* center avatar + info */
+    justify-content: center;
+    gap: 12px;
+    padding: 20px;
+    height: auto;             /* auto height for smaller screens */
+  }
+
+  /* Avatar + Info stacked vertically */
+  .contact-left {
+    flex-direction: column;   /* stack avatar and info */
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+  }
+
+  .avatar {
+    width: 60px;
+    height: 60px;
+  }
+
+  .contact-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;      /* center text */
+    justify-content: center;
+    max-width: 100%;
+    text-align: center;
+    padding: 0;
+  }
+
+  /* Buttons aligned in a single row */
+  .contact-actions {
+    width: 100%;
+    display: flex;
+    justify-content: center;  /* center buttons horizontally */
+    gap: 10px;                /* space between buttons */
+    flex-wrap: nowrap;        /* prevent wrapping */
+    flex-shrink: 0;
+    margin-top: 10px;
+  }
+
+  .contact-actions button {
+    flex: 1;                  /* buttons take equal space */
+    min-width: 60px;          /* minimum width for touch */
+    max-width: 120px;         /* prevent too wide buttons */
+    font-size: 14px;
+    padding: 10px 12px;
+    border-radius: 22px;
+  }
+
+  /* Keep block/unblock button slightly smaller if needed */
+  .contact-actions .block-btn,
+  .contact-actions .unblock-btn {
+    max-width: 90px;
+    font-size: 13px;
+  }
+}
   .contact-actions {
     width: 100%;
     justify-content: center;

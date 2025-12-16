@@ -52,7 +52,7 @@ function ContactItem({ contact, onEdit, onDelete, onBlock }) {
           <option value="sms">SMS</option>
         </select>
 
-        <button onClick={() => onEdit(contact)} className="edit-btn">
+        <button onClick={() => onEdit(contact)} className="edit-btn" disabled={isBlocked}>
           Edit
         </button>
 

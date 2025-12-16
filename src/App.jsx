@@ -25,12 +25,10 @@ function App() {
     console.error(error);
   }
 };
+
 const addContact = async (contact) => {
-  // normalize values
   const name = contact.name.trim().toLowerCase();
   const phone = contact.phone.trim();
-
-  // check duplicate
   const exists = contacts.some(
     c =>
       c.name.trim().toLowerCase() === name &&
@@ -41,8 +39,6 @@ const addContact = async (contact) => {
     alert("⚠️ Contact already exists");
     return;
   }
-
-  // add if not duplicate
   const res = await API.post("/contacts", {
     ...contact,
     blocked: false,
@@ -51,19 +47,18 @@ const addContact = async (contact) => {
   const sorted = [...contacts, res.data].sort((a, b) =>
     a.name.toLowerCase().localeCompare(b.name.toLowerCase())
   );
-
   setContacts(sorted);
 };
   const saveContact = (contact) => {
-    if (contact.id) {
-      API.put(`/contacts/${contact.id}`, contact)
-        .then(loadContacts);
-    } else {
-      API.post("/contacts", contact)
-        .then(loadContacts);
-    }
+  if (contact.id) {
+    API.put(`/contacts/${contact.id}`, contact)
+      .then(loadContacts);
     setEditing(null);
-  };
+  } else {
+    addContact(contact);
+  }
+};
+;
 
   const deleteContact = (id) => {
     if (!window.confirm("Delete contact?")) return;
@@ -80,7 +75,10 @@ const handleBlock = (contact) => {
     )
   );
 };
-
+const filteredContacts = contacts.filter((contact) =>
+  contact.name.toLowerCase().includes(search.toLowerCase()) ||
+  contact.phone.includes(search)
+);
   return (
     <div className="app">
       <h1>📞 Phone Book</h1>
@@ -98,7 +96,7 @@ const handleBlock = (contact) => {
         onCancel={() => setEditing(null)}
       />
 
-      {contacts.map((contact) => (
+      {filteredContacts.map((contact) => (
         <ContactItem
         key={contact.id}
         contact={contact}

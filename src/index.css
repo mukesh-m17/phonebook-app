@@ -84,7 +84,7 @@ body {
   flex-direction: column;
   align-items: center;
   max-width: 180px; 
-  overflow: hidden; /* ensures content does not spill */
+  overflow: hidden; 
   padding-left: 9px;
   padding-right: 9px;
   padding-bottom: 10px;
@@ -94,9 +94,9 @@ body {
   font-weight: 700;
   color: #0f2a44;
   font-size: 16px;
-  white-space: nowrap;      /* keep text in single line */
-  overflow: hidden;         /* hide overflow */
-  text-overflow: ellipsis;  /* show ... for long text */
+  white-space: nowrap;      
+  overflow: hidden;         
+  text-overflow: ellipsis;  
 }
 
 .contact-info .phone {
@@ -111,40 +111,31 @@ body {
 /* =====================
    ACTION BUTTONS
 ===================== */
-/* =======================
-   CONTACT ACTION BUTTONS
-======================= */
 .contact-actions {
   display: flex;
   gap: 10px;
   border-radius: 12px;
   font-weight: bold;
-  justify-content: center; /* center buttons horizontally */
+  justify-content: center; 
 }
 
 .contact-actions button {
   border: none;
-  height: 50px;             /* uniform height */
-  padding: 8px 15px;        /* balanced padding */
-  border-radius: 16px;      /* rounded corners */
-  font-size: 15px;          /* readable text */
+  height: 50px;            
+  padding: 8px 15px;        
+  border-radius: 16px;      
+  font-size: 15px;        
   font-weight: bold;
   color: white;
   cursor: pointer;
   transition: all 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-/* Hover effect for main buttons */
 .contact-actions button:hover {
   transform: scale(1.04);
   box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);
 }
 
-/* ------------------------
-   INDIVIDUAL BUTTON STYLES
------------------------- */
-
-/* Call Button - Green */
 .call-btn {
   background: linear-gradient(135deg, #4cd964, #28a745);
   width: 60px;
@@ -153,21 +144,18 @@ body {
   font-size: 15px;
 }
 
-/* Edit Button - Yellow/Orange */
 .edit-btn {
   background: linear-gradient(135deg, #f7d794, #f39c12);
   color: #333;
 }
 
-/* Delete Button - Red Gradient */
 .delete-btn {
   background: red;
 }
 
-/* Block Button - Top Right */
 .block-btn {
   background: linear-gradient(135deg, #ff8a80, #ff5252);
-  position: absolute;       /* relative to .contact-item */
+  position: absolute;      
   top: 12px;
   right: 12px;
   padding: 4px 10px;
@@ -186,7 +174,6 @@ body {
   box-shadow: 0 5px 12px rgba(0,0,0,0.15);
 }
 
-/* Unblock Button - Top Right */
 .unblock-btn {
   background: linear-gradient(135deg, #4cd964, #28a745);
   position: absolute;
@@ -208,9 +195,6 @@ body {
   box-shadow: 0 5px 12px rgba(0,0,0,0.15);
 }
 
-/* ------------------------
-   DISABLED BUTTONS WHEN BLOCKED
------------------------- */
 .contact-item.blocked .contact-actions button:not(.block-btn):not(.unblock-btn) {
   background: #cccccc !important;
   color: #666666 !important;
@@ -233,7 +217,6 @@ body {
     height: auto;
   }
 
-  /* Avatar + Info stacked vertically */
   .contact-left {
     flex-direction: column;
     align-items: center;
@@ -256,30 +239,28 @@ body {
     padding: 0;
   }
 
-  /* Buttons aligned in a single row, wider width */
   .contact-actions {
     width: 100%;
     display: flex;
     justify-content: center;
-    gap: 12px;         /* slightly more space between buttons */
-    flex-wrap: nowrap;  /* keep buttons in one line */
+    gap: 12px;        
+    flex-wrap: nowrap;  
   }
 
   .contact-actions button {
-    flex: 1;               /* take equal space */
-    min-width: 70px;       /* wider than before */
-    max-width: 140px;      /* prevent too wide buttons */
-    font-size: 15px;       /* readable text */
-    padding: 10px 12px;    /* taller and wider for touch */
-    border-radius: 18px;   /* slightly more rounded */
+    flex: 1;               
+    min-width: 70px;     
+    max-width: 140px;     
+    font-size: 15px;     
+    padding: 10px 12px;   
+    border-radius: 18px;   
   }
 
-  /* Block/unblock button stays top-right */
   .contact-actions .block-btn,
   .contact-actions .unblock-btn {
     top: 12px;
     right: 12px;
-    padding: 4px 10px;     /* keep small */
+    padding: 4px 10px;    
     font-size: 12px;
   }
 }
@@ -350,7 +331,7 @@ body {
   margin-bottom: 6px;
 }
 .btn {
-  padding: 10px 25px;           /* balanced padding for all buttons */
+  padding: 10px 25px;           
   border-radius: 22px;
   border: none;
   font-weight: bold;
@@ -381,32 +362,27 @@ body {
   border: none;
   font-size: 15px;
   font-weight: bold;
-  color: white; /* BLACK TEXT */
+  color: white; 
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
   cursor: pointer;
   transition: all 0.25s ease;
   background-color: #0026ffd3;
 }
-
-/* Hover */
 .msg-select:hover {
   transform: translateY(-3px) scale(1.05);
   box-shadow: 0 8px 20px rgba(0,0,0,0.25);
 }
 
-/* Focus */
 .msg-select:focus {
   outline: none;
   border-color: #000;
   box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.2);
 }
 
-/* Active */
 .msg-select:active {
   transform: scale(0.98);
 }
 
-/* Options */
 .msg-select option {
   background: #ffffff;
   color: #000;
@@ -417,30 +393,27 @@ body {
   box-shadow: 0 8px 20px rgba(0,0,0,0.25);
 }
 
-/* Active/Pressed Effect */
 .btn:active {
   transform: translateY(1px) scale(0.98);
   box-shadow: 0 4px 12px rgba(0,0,0,0.2);
 }
-/* ADD BUTTON */
+
 .btn.add {
   background: linear-gradient(135deg, #6bb8ff, #2f80ed);
 }
 
 .btn.add:hover {
-  background: linear-gradient(135deg, #2f80ed, #6bb8ff); /* subtle gradient shift */
+  background: linear-gradient(135deg, #2f80ed, #6bb8ff); 
 }
 
-/* UPDATE BUTTON */
 .btn.update {
   background: linear-gradient(135deg, #2ecc71, #27ae60);
 }
 
 .btn.update:hover {
-  background: linear-gradient(135deg, #27ae60, #2ecc71); /* subtle gradient shift */
+  background: linear-gradient(135deg, #27ae60, #2ecc71);
 }
 
-/* CANCEL BUTTON */
 .btn.cancel {
   background: linear-gradient(135deg, #eb5757, #ff7675);
 }
